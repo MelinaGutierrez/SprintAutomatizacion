@@ -3,10 +3,11 @@ Feature: Mercury Tours Verify Registration
   As a registered customer
   I want to test the shoppping online options
 
+Background: 
+    Given I am on the Mercury Tours homepage
 
 Scenario: Register a user on site        
-	Given I am on the Mercury Tours homepage
-	And I click the "Register" link
+	Given I click the "Register" link
 	When I enter the required fields as show below
 	|First Name: 	    | Pepito             |
     |Last Name: 	    | Perez              |
@@ -25,15 +26,51 @@ Scenario: Register a user on site
 	And my user name is "Pepazo"
 
 
-Scenario: Find a flight with a register user
-    Given I am on the Mercury Tours homepage
-    And I enter my user and password
+Scenario: Find a flight with a register user    
+    Given I enter my user and password
     When I press the "Sign-In" button
     Then the login successfully message is displayed
 
 Scenario: Register a user on site        
-	Given I am on the Mercury Tours homepage
-	And I click the "SIGN-ON" link
+	Given I click the "SIGN-ON" link
 	And I enter my user and password
 	When I press the Submit button
     Then the login successfully message is displayed
+
+
+@UnderConstructionPage
+Scenario: Validate that display Under Construction page    
+    Given I click the "CONTACT" link        
+    Then the under construction is displayed
+
+@UnderConstructionPage
+Scenario: Validate that display Under Construction page    
+    Given I click the "SUPPORT" link        
+    Then the under construction is displayed
+
+@UnderConstructionPage
+Scenario: Validate that display Under Construction page    
+    Given I click the "Destination" link        
+    Then the under construction is displayed
+
+@UnderConstructionPage
+Scenario: Validate that display Under Construction page    
+    Given I click the "Vacations" link        
+    Then the under construction is displayed
+
+@UnderConstructionPage
+Scenario: Validate that display Under Construction page    
+    Given I click the "Car Rentals" link        
+    Then the under construction is displayed
+
+@UnderConstructionPage
+Scenario: Validate that display Under Construction page    
+    Given I click the "Hotels" link        
+    Then the under construction is displayed
+
+@FlightsPage
+Scenario: Register a flight
+	Given I click the "Flights" link
+    And I click the continue button
+    Then the flight successfully message is displayed
+
