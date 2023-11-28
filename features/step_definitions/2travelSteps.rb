@@ -44,6 +44,34 @@ When(/^I enter the required fields as show below$/) do |table|
   end
 end
 
+When(/^I enter the required fields as show below2$/) do |table|
+  data = table.rows_hash
+  data.each_pair do |key, value|
+    case key
+    when "Type:"
+      find(:radio_button, option: value, name: 'tripType').click
+    when "Passengers:"
+      select(value, :from => 'passCount')
+    when "Departing From:"
+      select(value, :from => 'fromPort')
+    when "On:"
+      select(value, :from => 'fromMonth')
+    when "Day1:"
+      select(value, :from => 'fromDay')
+    when "Arriving In:"
+      select(value, :from => 'toPort')
+    when "Returning:"
+      select(value, :from => 'toMonth')
+    when "Day2:"
+      select(value, :from => 'toDay')
+    when "Service Class:"
+      select(value, :from => 'servClass')
+    when "Airline:"
+      select(value, :from => 'airline')
+    end
+  end
+end
+
 When(/^send my registration form$/) do
   xpath_base = '/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td/input'
   find(:xpath, xpath_base).click

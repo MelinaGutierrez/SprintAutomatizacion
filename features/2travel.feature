@@ -68,9 +68,26 @@ Scenario: Validate that display Under Construction page
     Given I click the "Hotels" link        
     Then the under construction is displayed
 
-@FlightsPage
+
 Scenario: Register a flight
 	Given I click the "Flights" link
+    And I click the continue button
+    Then the flight successfully message is displayed
+
+@FlightsPage
+Scenario: Register a flight 	
+	Given I click the "Flights" link
+    When I enter the required fields as show below2
+    |Type: 	            | One Way               |
+    |Passengers: 	    | 2                     |
+    |Departing From:    | Frankfurt             |
+    |On:                | June                  |
+    |Day1:              | 25                    |
+    |Arriving In:       | Paris                 |
+    |Returning:         | October               |
+    |Day2:              | 15                    |
+    |Service Class:     | Business class        |
+    |Airline:           | Blue Skies Airlines   |
     And I click the continue button
     Then the flight successfully message is displayed
 
