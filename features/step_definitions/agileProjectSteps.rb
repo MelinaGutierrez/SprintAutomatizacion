@@ -1,3 +1,16 @@
+# Add these require statements at the beginning of your file
+require 'capybara'
+require 'capybara/cucumber'
+
+# Create Before and After hooks
+Before do
+  page.driver.browser.manage.window.maximize
+end
+
+After do
+  Capybara.reset_sessions!
+end
+
 #	Given I am on the Agile Project login page
 Given(/^I am on the agile project page$/) do
   page.driver.browser.manage.window.maximize
@@ -26,9 +39,9 @@ Then('I should be on the customer home page') do
   expect(page).to have_current_path('https://demo.guru99.com/Agile_Project/Agi_V1/customer/Customerhomepage.php')
 end
 
-  Then('I should see an error alert with the message {string}') do |error_message|
-  page.driver.browser.switch_to.alert.accept # Aceptamos la alerta
-  expect(page).to have_content(error_message)
+Then('I should see the mini statement for Account No {string}') do |account_no|
+  expected_url_part = "https://demo.guru99.com/Agile_Project/Agi_V1/customer/MiniStatement.php?accountno=#{account_no}"
+  expect(page.current_url).to include(expected_url_part)
 end
 
 And('I click the "Mini Statement" button') do

@@ -4,11 +4,6 @@ Given(/^I am on the Security Project login page$/) do
   visit('https://demo.guru99.com/Security/SEC_V1/index.php')
 end
 
-#	Given I am on the Security Project login page
-Given('I am on the Agile Project login page') do
-  visit('https://demo.guru99.com/Agile_Project/Agi_V1/')
-end
-
 When('I enter {string} into the UserId field on Security Project') do |userid|
   fill_in('uid', with: userid)
 end
