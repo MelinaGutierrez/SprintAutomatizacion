@@ -7,29 +7,60 @@ Background:
   Given I am on the Telecom Project homepage
 
 @AddCustumer
-Scenario: Show messages that can contain other type of data
+Scenario: Show messages that can contain other type of data in email
+	Given I click the "Add Customer" link
+  And I enter the required fields add customer as show below    
+    |Background Check:  |  done             |
+    |First Name: 	      |  Prueba           |
+    |Last Name: 	      |  Prueba           |    
+    |Email: 	          |  Prueba           |
+    |Address:           |  Prueba           |	
+    |Mobile Number:     |  123456           |    
+  Then I see a "Email-ID is not valid" control
+  #And I see a "Special characters are not allowed" control  
+  #And I see a "Characters are not allowed" control  
+
+@AddCustumer
+Scenario: Show messages that can contain other type of data in Address
 	Given I click the "Add Customer" link
   And I enter the required fields add customer as show below    
     |Background Check:  |  pending          |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
-    |Email: 	          |  Prueba           |
-    |Address:           |  Prueba           |	
-    |Mobile Number:     |  Prueba           |    
-  Then I see a "Email-ID is not valid" control
-  And I see a "Characters are not allowed" control  
+    |Email: 	          |  Prueba@gmail.com |
+    |Address:           |  Prueba.          |	
+    |Mobile Number:     |  123456           |    
+  #Then I see a "Email-ID is not valid" control
+  Then I see a "Special characters are not allowed" control  
+  #And I see a "Characters are not allowed" control  
 
 @AddCustumer
-Scenario: Show messages that can contain other type of data
+Scenario: Show messages that can contain other type of data in Address
+	Given I click the "Add Customer" link
+  And I enter the required fields add customer as show below    
+    |Background Check:  |  pending          |
+    |First Name: 	      |  Prueba           |
+    |Last Name: 	      |  Prueba           |    
+    |Email: 	          |  Prueba@gmail.com |
+    |Address:           |  Prueba          |	
+    |Mobile Number:     |  Prueba           |    
+  #Then I see a "Email-ID is not valid" control
+  #And I see a "Special characters are not allowed" control  
+  Then I see a "Characters are not allowed" control  
+
+@AddCustumer
+Scenario: successfully add customer
 	Given I click the "Add Customer" link
   And I enter the required fields add customer as show below    
     |Background Check:  |  done              |
     |First Name: 	      |  Juan              |
     |Last Name: 	      |  Perez             |    
     |Email: 	          |  juan@gmail.com    |
-    |Address:           |  Av. America       |	
+    |Address:           |  Av America        |	
     |Mobile Number:     |  1234566           |    
-  And Press the "submit" button      
+  And Press the "submit" button   	
+  Then I see a "Access Details to Guru99 Telecom" tittle
+  And I see a "Please Note Down Your CustomerID" control
 
 @TariffPlanCustomer 
 Scenario: Message that field can't be empty
