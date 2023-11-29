@@ -30,4 +30,18 @@ end
   expect(page).to have_content(error_message)
 end
 
+And('I click the "Mini Statement" button') do
+  find('a[href="MiniStatementInput.php"]').click
+end
 
+And('I select {string} from the Account No dropdown') do |account_no|
+  select(account_no, from: 'accountno')
+end
+
+And('I click the "Submit" button') do
+  click_button('AccSubmit')
+end
+Then('I should see the mini statement for Account No {string}') do |account_no|
+  expected_url = "https://demo.guru99.com/Agile_Project/Agi_V1/customer/MiniStatement.php?accountno=#{account_no}"
+  expect(page).to have_current_path(expected_url)
+end
