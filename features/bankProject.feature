@@ -19,3 +19,10 @@ Feature: Bank Project Test
 		And I enter "incorrect_password" into the Password field on BP
 		And I click the LOGIN button
 		Then I should see an error alert with the message "User is not valid"
+
+	Scenario: Log in with incorrect UserID
+		Given I am on the Bank Project login page
+		When I enter "mngr541223" into the UserID field on BP
+		And I enter "tUzYzar" into the Password field on BP
+		And I click the LOGIN button
+		Then I should see an error alert with the message "User is not valid"

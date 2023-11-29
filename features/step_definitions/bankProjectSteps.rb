@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given('I am on the Bank Project login page') do
-  visit('https://demo.guru99.com/V1/index.php')
+  visit(@bank_project_url)
 end
 
 When('I click on the link with text {string}') do |link_text|
@@ -17,7 +17,7 @@ And('I click the "SUBMIT" button on Bank Project') do
 end
 
 And('I should be on the redirected page') do
-  expect(page).to have_current_path('https://demo.guru99.com/access.php?uid=mngr541222%20&%20pass=tUzYzar%20&%20email=pepito@gmail.com')
+  expect(page).to have_current_path(@credentials_url)
 end
 
 Then('I should see the login credentials table on the credentials page:') do |table|
@@ -31,6 +31,5 @@ end
 
 Then('I should visit the credentials page') do
   sleep(10)
-  credentials_url = 'https://demo.guru99.com/access.php?uid=mngr541222&pass=tUzYzar&email=pepito@gmail.com'
-  visit(credentials_url)
+  visit(@credentials_url)
 end
