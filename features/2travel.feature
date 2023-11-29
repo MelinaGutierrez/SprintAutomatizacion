@@ -68,7 +68,7 @@ Scenario: Validate that display Under Construction page
     Given I click the "Hotels" link        
     Then the under construction is displayed
 
-
+@FlightsPage
 Scenario: Register a flight
 	Given I click the "Flights" link
     And I click the continue button
