@@ -2,7 +2,7 @@ begin require 'rspec/expectations'; rescue LoadError; require 'spec/expectations
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/cucumber'
-require 'capybara-screenshot/cucumber'
+#require 'capybara-screenshot/cucumber'
 
 #PTravel Settings
 ENV['USER']="Pepazo"
