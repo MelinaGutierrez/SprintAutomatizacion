@@ -10,7 +10,9 @@ end
 When(/^I enter the required fields add customer as show below$/) do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
-    case key
+    case key  
+	when "Background Check:"
+    find('label[for="' + value + '"]').click
 	when "First Name:"
     	fill_in 'fname', :with => value
     	@name = value
@@ -74,10 +76,14 @@ When(/^I press the "([^"]*)" button$/) do |arg1|
   find(:xpath, xpath).click
 end
 
+Then('I see a {string} tittle') do |string|  
+  expect(page).to have_content(string)
+end
 
 Then('I see a {string} control') do |string|  
   expect(page).to have_content(string)
 end
+
 Then(/^the login successfully message is displayed$/) do
     expect(page).to have_content("Login Successfully")
     puts "ONLY FOR TEST  PURPOSES"
