@@ -41,7 +41,13 @@ end
 And('I click the "Submit" button') do
   click_button('AccSubmit')
 end
+
 Then('I should see the mini statement for Account No {string}') do |account_no|
   expected_url = "https://demo.guru99.com/Agile_Project/Agi_V1/customer/MiniStatement.php?accountno=#{account_no}"
+  expect(page).to have_current_path(expected_url)
+end
+
+Then('I should be on the Balance Enquiry page') do
+  expected_url = 'https://demo.guru99.com/Security/SEC_V1/customer/BalEnquiry.php'
   expect(page).to have_current_path(expected_url)
 end
