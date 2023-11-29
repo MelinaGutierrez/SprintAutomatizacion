@@ -4,9 +4,6 @@ Given(/^I am on the Telecom Project homepage$/) do
 
 end
 
-Given(/^I click the "([^"]*)" link$/) do |linkText|
-  click_link(linkText)
-end
 
 When(/^I enter the required fields as show below$/) do |table|
   data = table.rows_hash
