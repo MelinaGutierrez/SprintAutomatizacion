@@ -27,7 +27,7 @@ Scenario Outline: Register on Guru99 page with a several emails
   Then I should see <username> id
   
 Examples:
-    | email               | username    | 
+    | email               | username    |
     |  carlos@test.com    |  mngr135053 |
     |  pepe@hotmail.com   |  mngr123467 |	  
     |  lucas@gmail.com    |  mngr187654 |

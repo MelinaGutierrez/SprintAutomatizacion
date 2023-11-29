@@ -3,10 +3,11 @@ Feature: Mercury Tours Verify Registration
   As a registered customer
   I want to test the shoppping online options
 
-Background: 
-    Given I am on the Mercury Tours homepage
+Background:
+  Given I am on the Mercury Tours homepage
 
 Scenario: Register a user on site        
+
 	Given I click the "Register" link
 	When I enter the required fields as show below
 	|First Name: 	    | Pepito             |
