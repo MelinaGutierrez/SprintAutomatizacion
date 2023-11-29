@@ -18,12 +18,8 @@ Scenario: Register a user on site
   And Press the "submit" button
   Then I should see an error alert with the message "please fill all fields"
 
-@TariffPlan
-Scenario: Register a user on site        
-	Given I click the "Add Tariff Plan" link
- 
-@TariffPlanCustomer
-Scenario: Register a user on site        
+@TariffPlanCustomer 
+Scenario: Message that field can't be empty
 	Given I click the "Add Tariff Plan to Customer" link
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      |               |
@@ -31,7 +27,7 @@ Scenario: Register a user on site
   #And I should see an error alert with the message "Please Correct Value Input"
  
 @TariffPlanCustomer
-Scenario: Register a user on site        
+Scenario: Message that field can't be special characters
 	Given I click the "Add Tariff Plan to Customer" link
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | !@#$%^&       |
@@ -39,11 +35,27 @@ Scenario: Register a user on site
   #And I should see an error alert with the message "Please Correct Value Input"
  
 @TariffPlanCustomer
-Scenario: Register a user on site        
+Scenario: Message that field can't be string
 	Given I click the "Add Tariff Plan to Customer" link
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | Hola Mundo    |
   Then I see a "Characters are not allowed" control
+  
+
+@TariffPlanCustomer
+Scenario: Correct input in the field
+	Given I click the "Add Tariff Plan to Customer" link
+  And I enter the required fields add plan customer as show below
+    |Enter Your Customer ID: 	      | 1234567     |
+  And Press the "submit" button
+  Then I see a "Please Input Your Correct Customer ID" control
+
+@TariffPlanCustomer
+Scenario: Alert that can't use that type of values
+	Given I click the "Add Tariff Plan to Customer" link
+  And I enter the required fields add plan customer as show below
+    |Enter Your Customer ID: 	      | -----    |
+  And Press the "submit" button
   #And I should see an error alert with the message "Please Correct Value Input"
  
 @PayBilling
