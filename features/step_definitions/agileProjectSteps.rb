@@ -10,6 +10,7 @@ Given('I am on the Agile Project login page') do
 end
 
 When('I enter {string} into the UserId field') do |userid|
+  sleep(2)
   fill_in('uid', with: userid)
 end
 
@@ -50,4 +51,23 @@ end
 Then('I should be on the Balance Enquiry page') do
   expected_url = 'https://demo.guru99.com/Security/SEC_V1/customer/BalEnquiry.php'
   expect(page).to have_current_path(expected_url)
+end
+
+When('I enter {string} into the UserID field on BP') do |userid|
+  fill_in('uid', with: userid)
+end
+
+When('I enter {string} into the Password field on BP') do |password|
+  fill_in('password', with: password)
+end
+
+And('I click the LOGIN button') do
+  sleep(2)
+  click_button('LOGIN')
+end
+
+Then('I should see an error alert with the message {string}') do |error_message|
+  sleep(2)
+  page.driver.browser.switch_to.alert.accept
+  expect(page).to have_content(error_message)
 end

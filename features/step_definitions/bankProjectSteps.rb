@@ -28,6 +28,7 @@ Then('I should see the login credentials table on the credentials page:') do |ta
     expect(page).to have_content("Password : #{credentials['Password']}")
   end
 end
+
 Then('I should visit the credentials page') do
   sleep(10)
   credentials_url = 'https://demo.guru99.com/access.php?uid=mngr541222&pass=tUzYzar&email=pepito@gmail.com'
