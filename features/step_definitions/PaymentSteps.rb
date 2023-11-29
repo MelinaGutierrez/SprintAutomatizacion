@@ -1,87 +1,51 @@
-Given(/^I am on the Mercury Tours homepage$/) do
-     page.driver.browser.manage.window.maximize
-     visit('http://demo.guru99.com/test/newtours/')
-
+Given(/^I am on the Payment Gateway Project homepage$/) do
+  page.driver.browser.manage.window.maximize
+  visit('features/step_definitions/TelecomSteps.rb')
 end
 
-Given(/^I click the "([^"]*)" link$/) do |linkText|
-  click_link(linkText)
+Then(/^the guru telecom screen is show$/) do  	
+  expect(page).to have_content("Add Customer")  
 end
 
-When(/^I enter the required fields as show below$/) do |table|
+When(/^I enter the required fields add customer as show below$/) do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
-    case key
+    case key  
+	when "Background Check:"
+    find('label[for="' + value + '"]').click
 	when "First Name:"
-    	fill_in 'firstName', :with => value
+    	fill_in 'fname', :with => value
     	@name = value
 	when "Last Name:"
-		fill_in 'lastName', :with => value
-		@lastName = value
-    when "Phone:"
-		fill_in 'phone', :with => value
+		fill_in 'lname', :with => value
+		@lastName = value    
     when "Email:"
-		fill_in 'userName', :with => value
+		fill_in 'emailid', :with => value
 	when "Address:"
-		fill_in 'address1', :with => value
-	when "City:"
-		fill_in 'city', :with => value
-	when "State/Province:"
-		fill_in 'state', :with => value
-	when "Postal Code:"
-		fill_in 'postalCode', :with => value
-	when "Country:"
-		select(value, :from => 'country')
-	when "User Name:"
-		fill_in 'email', :with => value
-		@userName = value
-	when "Password:"
-		fill_in 'password', :with => value
-	when "Confirm Password:"
-		fill_in 'confirmPassword', :with => value
-		@password = value
+		fill_in 'addr', :with => value
+	when "Mobile Number:"
+		fill_in 'telephoneno', :with => value
 	end
   end
 end
 
-When(/^I enter the required fields as show below2$/) do |table|
+When(/^I enter the required fields add plan customer as show below$/) do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
     case key
-    when "Type:"
-      find(:radio_button, option: value, name: 'tripType').click
-    when "Passengers:"
-      select(value, :from => 'passCount')
-    when "Departing From:"
-      select(value, :from => 'fromPort')
-    when "On:"
-      select(value, :from => 'fromMonth')
-    when "Day1:"
-      select(value, :from => 'fromDay')
-    when "Arriving In:"
-      select(value, :from => 'toPort')
-    when "Returning:"
-      select(value, :from => 'toMonth')
-    when "Day2:"
-      select(value, :from => 'toDay')
-    when "Service Class:"
-      select(value, :from => 'servClass')
-    when "Airline:"
-      select(value, :from => 'airline')
-    end
+	when "Enter Your Customer ID:"
+    	fill_in 'customer_id', :with => value
+    	@name = value
+	end
   end
 end
 
-When(/^send my registration form$/) do
-  xpath_base = '/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td/input'
-  find(:xpath, xpath_base).click
+
+Then('I should see an error alert with the message {string}') do |string|
+  page.driver.browser.switch_to.alert.accept # Aceptamos la alerta
+  expect(page).to have_content(string)
 end
 
-Then(/^the confirmation screen is show$/) do
-  greeting = "Dear"+" "+@name+" "+@lastName 	
-  expect(page).to have_content(greeting)
-  
-end
 
 Then(/^my user name is "([^"]*)"$/) do |userName|
   puts userName
@@ -112,6 +76,13 @@ When(/^I press the "([^"]*)" button$/) do |arg1|
   find(:xpath, xpath).click
 end
 
+Then('I see a {string} tittle') do |string|  
+  expect(page).to have_content(string)
+end
+
+Then('I see a {string} control') do |string|  
+  expect(page).to have_content(string)
+end
 
 Then(/^the login successfully message is displayed$/) do
     expect(page).to have_content("Login Successfully")
