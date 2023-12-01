@@ -8,7 +8,7 @@ Feature: Bank Project Test
 		When I click on the link with text "here"
 		And I enter "pepito@gmail.com" into the Email ID field
 		And I click the "SUBMIT" button on Bank Project
-		Then I should visit the credentials page
+		Then I should visit the credentials page on BP
 		#Then I should see the login credentials table on the credentials page:
 		#	| UserID      | Password |
 		#	| mngr541222  | tUzYzar  |

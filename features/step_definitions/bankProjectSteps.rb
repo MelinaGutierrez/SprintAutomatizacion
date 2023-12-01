@@ -16,8 +16,16 @@ When('I click the "SUBMIT" button on Bank Project') do
   click_button('btnLogin')
 end
 
+When('I enter {string} into the Password field on BP') do |password|
+  fill_in 'password', with: password # Ajusta el selector según la estructura de tu formulario
+end
+
 When('I should be on the redirected page') do
   expect(page).to have_current_path(@credentials_url, wait: 10)
+end
+
+When('I click the LOGIN button') do
+  click_button('LOGIN') # Ajusta el selector según la estructura de tu formulario
 end
 
 Then('I should see the login credentials table on the credentials page:') do |table|
@@ -30,7 +38,10 @@ Then('I should see the login credentials table on the credentials page:') do |ta
   end
 end
 
-Then('I should visit the credentials page') do
+Then('I should visit the credentials page on BP') do
   visit(@credentials_url)
   expect(page).to have_selector('body', wait: 10)
+end
+Then('I should see an error alert with the message {string}') do |error_message|
+  expect(page).to have_content(/#{Regexp.escape(error_message)}/i)
 end

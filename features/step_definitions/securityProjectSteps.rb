@@ -20,6 +20,8 @@ Then('I should be on the customer home page with Balance') do
   expect(page).to have_selector('marquee.heading3', text: "Welcome To Customer's Page of Guru99 Bank")
 end
 
+When('I select {string} from the Account No dropdown on Security Project') do |account_number|
+  select(account_number, from: 'accountno')
 When('I click the "Balance Enquiry" link on Security Project') do
   click_link('Balance Enquiry')
 end
@@ -77,7 +79,7 @@ Then('I should see a logout success alert on Security Project') do
   expect(url_after_logout).to eq('https://demo.guru99.com/Security/SEC_V1/index.php')
 end
 
-When('I click the "Balance Enquiry" link on Security Project') do
+When('I click the "Balance Enquiry" link on Security Project$') do
   click_link('Balance Enquiry')
 end
 
@@ -90,5 +92,5 @@ When('I click the "Reset" button on Security Project') do
 end
 
 Then('the Account No dropdown should be reset on Security Project') do
-  expect(find('#accountno').value).to eq('')  # Ajusta el identificador del campo según la estructura real de tu página web
+  expect(page).to have_select('accountno', selected: 'Select Account')
 end
