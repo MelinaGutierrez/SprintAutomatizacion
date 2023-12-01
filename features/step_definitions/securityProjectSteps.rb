@@ -8,11 +8,11 @@ When('I enter {string} into the UserId field on Security Project') do |userid|
   fill_in('uid', with: userid)
 end
 
-And('I enter {string} into the Password field on Security Project') do |password|
+When('I enter {string} into the Password field on Security Project') do |password|
   fill_in('password', with: password)
 end
 
-And('I click the LOGIN button on Security Project') do
+When('I click the LOGIN button on Security Project') do
   click_button('LOGIN')
 end
 
@@ -24,11 +24,11 @@ When('I click the "Balance Enquiry" link on Security Project') do
   click_link('Balance Enquiry')
 end
 
-And('I select {string} from the Account No dropdown on Security Project') do |account_no|
+When('I select {string} from the Account No dropdown on Security Project') do |account_no|
   select(account_no, from: 'accountno')
 end
 
-And('I click the "Submit" button on Security Project') do
+When('I click the "Submit" button on Security Project') do
   click_button('AccSubmit')
 end
 
@@ -36,11 +36,11 @@ When('I click the "Mini Statement" link on Security Project') do
   click_link('Mini Statement')
 end
 
-And('I select {string} from the Account No dropdown for Mini Statement on Security Project') do |account_no|
+When('I select {string} from the Account No dropdown for Mini Statement on Security Project') do |account_no|
   select(account_no, from: 'accountno')
 end
 
-And('I click the "Submit" button for Mini Statement on Security Project') do
+When('I click the "Submit" button for Mini Statement on Security Project') do
   click_button('AccSubmit')
 end
 
@@ -53,7 +53,7 @@ When('I click the "Contact Us" link on Security Project') do
   click_link('Contact Us')
 end
 
-And('I fill in the Contact Us form on Security Project') do
+When('I fill in the Contact Us form on Security Project') do
   fill_in('name', with: 'Pepito')
   fill_in('emailid', with: 'pepito@gmail.com')
   fill_in('telephoneno', with: '123456')
@@ -81,11 +81,11 @@ When('I click the "Balance Enquiry" link on Security Project') do
   click_link('Balance Enquiry')
 end
 
-And('I select {string} from the Account No dropdown on Security Project') do |account_no|
+When('I select {string} from the Account No dropdown on Security Project') do |account_no|
   select(account_no, from: 'accountno')
 end
 
-And('I click the "Reset" button on Security Project') do
+When('I click the "Reset" button on Security Project') do
   click_button('res')
 end
 
