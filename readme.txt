@@ -1,5 +1,5 @@
-# P4-Smoke-BDD
-## Descripción del Proyecto
+
+# Práctica Automatización
 
 Este proyecto es la práctica #4 de la materia de gestión de calidad, enfocada en realizar smoke testing utilizando Behavior Driven Development (BDD) para establecer un lenguaje común y automatizar pruebas.
 
@@ -10,7 +10,6 @@ El objetivo principal es crear escenarios de prueba para el sitio "Mercury Tours
 * Ruby
 * Capybara
 * Selenium WebDriver para Chrome
-
 Además, se han definido las pruebas que forman parte del Smoke Test.
 
 ## Configuración del Entorno
@@ -24,3 +23,16 @@ Para ejecutar los comandos, sigue los pasos a continuación:
 
 ### Ejecutar solo las pruebas con un flag (BVT):
 
+```
+cucumber -t @{nombre}
+```
+### Ejecutar todas las pruebas de un archivo (BVT):
+
+```
+cucumber .\features\{nombre_carpeta}
+```
+### Ejecutar todas las pruebas (BVT):
+
+```
+cucumber .\features\
+```
