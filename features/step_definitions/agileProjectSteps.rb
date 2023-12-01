@@ -14,11 +14,11 @@ When('I enter {string} into the UserId field') do |userid|
   fill_in('uid', with: userid)
 end
 
-And('I enter {string} into the Password field') do |password|
+When('I enter {string} into the Password field') do |password|
   fill_in('password', with: password)
 end
 
-And('I click the login button') do
+When('I click the login button') do
   click_button('LOGIN')
 end
 
@@ -31,15 +31,15 @@ Then('I should see the mini statement for Account No {string}') do |account_no|
   expect(page.current_url).to include(expected_url_part)
 end
 
-And('I click the "Mini Statement" button on AgileProject') do
+When('I click the "Mini Statement" button on AgileProject') do
   find('a[href="MiniStatementInput.php"]').click
 end
 
-And('I select {string} from the Account No dropdown') do |account_no|
+When('I select {string} from the Account No dropdown') do |account_no|
   select(account_no, from: 'accountno')
 end
 
-And('I click the "Submit" button on AgileProject') do
+When('I click the "Submit" button on AgileProject') do
   click_button('AccSubmit')
 end
 
@@ -61,7 +61,7 @@ When('I enter {string} into the Password field on BP') do |password|
   fill_in('password', with: password)
 end
 
-And('I click the LOGIN button') do
+When('I click the LOGIN button') do
   sleep(2)
   click_button('LOGIN')
 end
@@ -76,11 +76,15 @@ Then('I should see the logout success message') do
   page.driver.browser.switch_to.alert.accept
 end
 
-And('I should be back on the login page') do
+When('I select {string} from the Account No dropdown') do |string|
+  // Write code here that turns the phrase above into concrete actions
+end
+
+When('I should be back on the login page') do
   expected_url = 'https://demo.guru99.com/Agile_Project/Agi_V1/index.php'
   expect(page).to have_current_path(expected_url)
 end
 
-And('I click the "Log out" button on AgileProject') do
+When('I click the "Log out" button on AgileProject') do
   find('a[href="Logout.php"]').click
 end

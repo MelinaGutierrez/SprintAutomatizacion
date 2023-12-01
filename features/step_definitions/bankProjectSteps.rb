@@ -8,11 +8,11 @@ When('I click on the link with text {string}') do |link_text|
   click_link(link_text)
 end
 
-And('I enter {string} into the Email ID field') do |email_id|
+When('I enter {string} into the Email ID field') do |email_id|
   fill_in('emailid', with: email_id)
 end
 
-And('I click the "SUBMIT" button on Bank Project') do
+When('I click the "SUBMIT" button on Bank Project') do
   click_button('btnLogin')
 end
 
@@ -20,7 +20,7 @@ When('I enter {string} into the Password field on BP') do |password|
   fill_in 'password', with: password # Ajusta el selector según la estructura de tu formulario
 end
 
-And('I should be on the redirected page') do
+When('I should be on the redirected page') do
   expect(page).to have_current_path(@credentials_url, wait: 10)
 end
 

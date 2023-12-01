@@ -9,7 +9,7 @@ Background:
 @AddCustumer
 Scenario: Show messages that can contain other type of data in email
 	Given I click the "Add Customer" link
-  And I enter the required fields add customer as show below    
+  And I enter the required telecom fields as show below
     |Background Check:  |  done             |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
@@ -21,7 +21,7 @@ Scenario: Show messages that can contain other type of data in email
 @AddCustumer
 Scenario: Show messages that can contain other type of data in Address
 	Given I click the "Add Customer" link
-  And I enter the required fields add customer as show below    
+  And I enter the required telecom fields as show below
     |Background Check:  |  pending          |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
@@ -33,7 +33,7 @@ Scenario: Show messages that can contain other type of data in Address
 @AddCustumer
 Scenario: Show messages that can contain other type of data in Address
 	Given I click the "Add Customer" link
-  And I enter the required fields add customer as show below    
+  And I enter the required telecom fields as show below
     |Background Check:  |  pending          |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
@@ -45,7 +45,7 @@ Scenario: Show messages that can contain other type of data in Address
 @AddCustumer
 Scenario: successfully add customer
 	Given I click the "Add Customer" link
-  And I enter the required fields add customer as show below    
+  And I enter the required telecom fields as show below
     |Background Check:  |  done              |
     |First Name: 	      |  Juan              |
     |Last Name: 	      |  Perez             |    
@@ -60,7 +60,7 @@ Scenario: successfully add customer
 Scenario: Message that field can't be empty
 	Given I click the "Add Tariff Plan to Customer" link
   Then I see a "Add Tariff Plan to Customer" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      |               |
   Then I see the error message "Number must not be blank" to validate the entry  
  
@@ -68,7 +68,7 @@ Scenario: Message that field can't be empty
 Scenario: Message that field can't be special characters
 	Given I click the "Add Tariff Plan to Customer" link
   Then I see a "Add Tariff Plan to Customer" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | !@#$%^&       |
   Then I see the error message "Special characters are not allowed" to validate the entry  
  
@@ -76,7 +76,7 @@ Scenario: Message that field can't be special characters
 Scenario: Message that field can't be string
 	Given I click the "Add Tariff Plan to Customer" link
   Then I see a "Add Tariff Plan to Customer" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | Hola Mundo    |
   Then I see the error message "Characters are not allowed" to validate the entry
   
@@ -85,7 +85,7 @@ Scenario: Message that field can't be string
 Scenario: Correct input in the field
 	Given I click the "Add Tariff Plan to Customer" link
   Then I see a "Add Tariff Plan to Customer" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | 1234567     |
   And Press the "submit" button
   Then I see the error message "Please Input Your Correct Customer ID" to validate the entry
@@ -93,7 +93,7 @@ Scenario: Correct input in the field
 @TariffPlanCustomer
 Scenario: Alert that can't use that type of values
 	Given I click the "Add Tariff Plan to Customer" link
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | -----    |
   And Press the "submit" button
   #And I should see an error alert with the message "Please Correct Value Input"
@@ -102,7 +102,7 @@ Scenario: Alert that can't use that type of values
 Scenario:  Enter blank Customer ID
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      |               |
   Then I see the error message "Number must not be blank" to validate the entry  
  
@@ -110,7 +110,7 @@ Scenario:  Enter blank Customer ID
 Scenario: Enter Your Customer ID with special characters
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | !@#$%^&       |
   Then I see the error message "Special characters are not allowed" to validate the entry  
  
@@ -118,7 +118,7 @@ Scenario: Enter Your Customer ID with special characters
 Scenario: Enter Your Customer ID with string
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | Hola Mundo    |
   Then I see the error message "Characters are not allowed" to validate the entry
   
@@ -126,7 +126,7 @@ Scenario: Enter Your Customer ID with string
 Scenario: Enter Your Customer ID
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
-  And I enter the required fields add plan customer as show below
+  And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | 1234567     |
   And Press the "submit" button
   Then I see the error message "Please Input Your Correct Customer ID" to validate the entry
