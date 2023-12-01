@@ -7,6 +7,16 @@ require 'capybara/cucumber'
 ENV['USER']="Pepazo"
 ENV['PSW']="ILoveQA"
 
+# URLs for bankProject
+@bank_project_url = 'URL_DEL_BANK_PROJECT'
+@credentials_url = 'URL_DEL_CREDENTIALS_PAGE'
+
+# Credenciales for bank project
+@valid_user_id = 'mngr541222'
+@valid_password = 'tUzYzar'
+@incorrect_password = 'incorrect_password'
+@incorrect_user_id = 'incorrect_userid'
+
 Capybara.default_driver = :selenium
 
 # Set the host the Capybara tests should be run against
