@@ -6,24 +6,65 @@ Feature: Mercury Tours Verify Registration
 Background:
   Given I am on the Mercury Tours homepage
 
+#@RegisterUser
 Scenario: Register a user on site        
 	Given I click the "Register" link
 	When I enter the required fields as show below
-	|First Name: 	    | Pepito             |
-    |Last Name: 	    | Perez              |
-    |Phone: 	        | 1234-567-12        |
-    |Email: 	        | pepe@pepazo.com    |
+	  |First Name: 	      | Pepito             |
+    |Last Name: 	      | Perez              |
+    |Phone: 	          | 1234-567-12        |
+    |Email: 	          | pepe@pepazo.com    |
     |Address:           | Av. America #123   |	
     |City: 	            | Cochabamba         |
     |State/Province:    | Cochabamba         | 	
     |Postal Code: 	    | 9897               |
     |Country: 	        | BOLIVIA            |
-    |User Name: 	    | Pepazo             |
+    |User Name: 	      | Pepazo             |
     |Password:          | ILoveQA            | 
     |Confirm Password:  | ILoveQA            |
 	And send my registration form
 	Then the confirmation screen is show
 	And my user name is "Pepazo"
+
+@RegisterUser
+Scenario: Register a user on site        
+	Given I click the "Register" link
+	When I enter the required fields as show below
+    | First Name:       | Gabriel            |
+    | Last Name:        | Lopez              |
+    | Phone:            | 234543             |
+    | Email:            | Gabriel@gmail.com  |
+    | Address:          | Av. Circunvalación |
+    | City:             | Cochabamba         |
+    | State/Province:   | Cochabamba         |
+    | Postal Code:      | 98971234           |
+    | Country:          | BOLIVIA            |
+    | User Name:        | User               |
+    | Password:         | Password           |
+    | Confirm Password: | Password           |
+	And send my registration form
+	Then the confirmation screen is show
+	And my user name is "User"
+
+#@RegisterUser
+Scenario: Register a user on site        
+	Given I click the "Register" link
+	When I enter the required fields as show below
+    | First Name:       |             |
+    | Last Name:        |             |
+    | Phone:            |             |
+    | Email:            |             |
+    | Address:          |             |
+    | City:             |             |
+    | State/Province:   |             |
+    | Postal Code:      |             |
+    | Country:          |             |
+    | User Name:        |             |
+    | Password:         |             |
+    | Confirm Password: |             |
+	And send my registration form
+	Then the confirmation screen is show
+	And my user name is ""
 
 
 Scenario: Find a flight with a register user    
@@ -60,6 +101,21 @@ Scenario: Register a flight
     | Passengers:     | 1              |
     | Departing form: | Acapulco       |
     | On:             | June 20        |
+    | Arriving In:    | Acapulco       |
+    | Returning:      | June 10        | 
+    | Service Class:  | Business class |
+    | Airline:        | No Preference  |
+    And I click the "Continue->"  button
+    Then show the confimation page
+
+@FlightsPage
+Scenario: Register a flight with a bad date
+	Given I click the "Flights" link
+    When I enter the  Flight Details required fields as show below
+    | Type:           | Round Trip     |
+    | Passengers:     | 1              |
+    | Departing form: | Acapulco       |
+    | On:             | February 31    |
     | Arriving In:    | Acapulco       |
     | Returning:      | June 10        | 
     | Service Class:  | Business class |
