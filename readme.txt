@@ -6,11 +6,11 @@ Este proyecto es la práctica #4 de la materia de gestión de calidad, enfocada 
 
 El objetivo principal es crear escenarios de prueba para el sitio "Mercury Tours" y automatizarlos mediante el uso de las siguientes tecnologías:
 
-- BDD (Behavior Driven Development)
-- Cucumber
-- Ruby
-- Capybara
-- Selenium WebDriver para Chrome
+* BDD (Behavior Driven Development)
+* Cucumber
+* Ruby
+* Capybara
+* Selenium WebDriver para Chrome
 
 Además, se han definido las pruebas que forman parte del Smoke Test.
 
@@ -25,10 +25,11 @@ Para ejecutar los comandos, sigue los pasos a continuación:
 
 ### Ejecutar solo las pruebas con un flag (BVT):
 
-```bash
+```
 cucumber -t @{Nombre}
-
+```
 ### Ejecutar todas las pruebas (BVT):
 
-```bash
+```
 cucumber features --publish-quiet
+```
