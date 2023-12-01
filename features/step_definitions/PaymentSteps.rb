@@ -80,10 +80,6 @@ Then('I see a {string} tittle') do |string|
   expect(page).to have_content(string)
 end
 
-Then('I see a {string} control') do |string|  
-  expect(page).to have_content(string)
-end
-
 Then(/^the login successfully message is displayed$/) do
     expect(page).to have_content("Login Successfully")
     puts "ONLY FOR TEST  PURPOSES"
