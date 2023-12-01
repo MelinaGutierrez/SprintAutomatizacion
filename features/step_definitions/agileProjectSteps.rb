@@ -1,16 +1,3 @@
-# Add these require statements at the beginning of your file
-require 'capybara'
-require 'capybara/cucumber'
-
-# Create Before and After hooks
-Before do
-  page.driver.browser.manage.window.maximize
-end
-
-After do
-  Capybara.reset_sessions!
-end
-
 #	Given I am on the Agile Project login page
 Given(/^I am on the agile project page$/) do
   page.driver.browser.manage.window.maximize
@@ -44,7 +31,7 @@ Then('I should see the mini statement for Account No {string}') do |account_no|
   expect(page.current_url).to include(expected_url_part)
 end
 
-And('I click the "Mini Statement" button') do
+And('I click the "Mini Statement" button on AgileProject') do
   find('a[href="MiniStatementInput.php"]').click
 end
 
@@ -52,7 +39,7 @@ And('I select {string} from the Account No dropdown') do |account_no|
   select(account_no, from: 'accountno')
 end
 
-And('I click the "Submit" button') do
+And('I click the "Submit" button on AgileProject') do
   click_button('AccSubmit')
 end
 
@@ -79,8 +66,21 @@ And('I click the LOGIN button') do
   click_button('LOGIN')
 end
 
-Then('I should see an error alert with the message {string}') do |error_message|
-  sleep(2)
+Then('I should see an Agile Project error alert with the message {string}') do |expected_message|
+  actual_message = find('.error-alert').text
+  expect(actual_message).to include(expected_message)
+end
+
+Then('I should see the logout success message') do
+  page.driver.browser.switch_to.alert
   page.driver.browser.switch_to.alert.accept
-  expect(page).to have_content(error_message)
+end
+
+And('I should be back on the login page') do
+  expected_url = 'https://demo.guru99.com/Agile_Project/Agi_V1/index.php'
+  expect(page).to have_current_path(expected_url)
+end
+
+And('I click the "Log out" button on AgileProject') do
+  find('a[href="Logout.php"]').click
 end
