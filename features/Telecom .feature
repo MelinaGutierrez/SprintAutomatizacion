@@ -1,7 +1,7 @@
-Feature: Mercury Tours Verify Registration
-  In order to book a flight in Mercury site
+Feature: Telecom Verify addition
+  In order to Add customer in Telecom site
   As a registered customer
-  I want to test the shoppping online options
+  I want to test the payment online options
 
 Background: 
   Given I am on the Telecom Project homepage
@@ -16,10 +16,8 @@ Scenario: Show messages that can contain other type of data in email
     |Email: 	          |  Prueba           |
     |Address:           |  Prueba           |	
     |Mobile Number:     |  123456           |    
-  Then I see a "Email-ID is not valid" control
-  #And I see a "Special characters are not allowed" control  
-  #And I see a "Characters are not allowed" control  
-
+  Then I see the error message "Email-ID is not valid" to validate the entry
+  
 @AddCustumer
 Scenario: Show messages that can contain other type of data in Address
 	Given I click the "Add Customer" link
@@ -29,10 +27,8 @@ Scenario: Show messages that can contain other type of data in Address
     |Last Name: 	      |  Prueba           |    
     |Email: 	          |  Prueba@gmail.com |
     |Address:           |  Prueba.          |	
-    |Mobile Number:     |  123456           |    
-  #Then I see a "Email-ID is not valid" control
-  Then I see a "Special characters are not allowed" control  
-  #And I see a "Characters are not allowed" control  
+    |Mobile Number:     |  123456           |      
+  Then I see the error message "Special characters are not allowed" to validate the entry    
 
 @AddCustumer
 Scenario: Show messages that can contain other type of data in Address
@@ -44,9 +40,7 @@ Scenario: Show messages that can contain other type of data in Address
     |Email: 	          |  Prueba@gmail.com |
     |Address:           |  Prueba          |	
     |Mobile Number:     |  Prueba           |    
-  #Then I see a "Email-ID is not valid" control
-  #And I see a "Special characters are not allowed" control  
-  Then I see a "Characters are not allowed" control  
+  Then I see the error message "Characters are not allowed" to validate the entry  
 
 @AddCustumer
 Scenario: successfully add customer
@@ -60,7 +54,7 @@ Scenario: successfully add customer
     |Mobile Number:     |  1234566           |    
   And Press the "submit" button   	
   Then I see a "Access Details to Guru99 Telecom" tittle
-  And I see a "Please Note Down Your CustomerID" control
+  And I see the error message "Please Note Down Your CustomerID" to validate the entry
 
 @TariffPlanCustomer 
 Scenario: Message that field can't be empty
@@ -68,8 +62,7 @@ Scenario: Message that field can't be empty
   Then I see a "Add Tariff Plan to Customer" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      |               |
-  Then I see a "Number must not be blank" control
-  #And I should see an error alert with the message "Please Correct Value Input"
+  Then I see the error message "Number must not be blank" to validate the entry  
  
 @TariffPlanCustomer
 Scenario: Message that field can't be special characters
@@ -77,8 +70,7 @@ Scenario: Message that field can't be special characters
   Then I see a "Add Tariff Plan to Customer" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | !@#$%^&       |
-  Then I see a "Special characters are not allowed" control
-  #And I should see an error alert with the message "Please Correct Value Input"
+  Then I see the error message "Special characters are not allowed" to validate the entry  
  
 @TariffPlanCustomer
 Scenario: Message that field can't be string
@@ -86,7 +78,7 @@ Scenario: Message that field can't be string
   Then I see a "Add Tariff Plan to Customer" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | Hola Mundo    |
-  Then I see a "Characters are not allowed" control
+  Then I see the error message "Characters are not allowed" to validate the entry
   
 
 @TariffPlanCustomer
@@ -96,7 +88,7 @@ Scenario: Correct input in the field
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | 1234567     |
   And Press the "submit" button
-  Then I see a "Please Input Your Correct Customer ID" control
+  Then I see the error message "Please Input Your Correct Customer ID" to validate the entry
 
 @TariffPlanCustomer
 Scenario: Alert that can't use that type of values
@@ -107,36 +99,34 @@ Scenario: Alert that can't use that type of values
   #And I should see an error alert with the message "Please Correct Value Input"
  
 @PayBilling
-Scenario: Register a user on site        
+Scenario:  Enter blank Customer ID
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      |               |
-  Then I see a "Number must not be blank" control
-  #And I should see an error alert with the message "Please Correct Value Input"
+  Then I see the error message "Number must not be blank" to validate the entry  
  
 @PayBilling
-Scenario: Register a user on site        
+Scenario: Enter Your Customer ID with special characters
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | !@#$%^&       |
-  Then I see a "Special characters are not allowed" control
-  #And I should see an error alert with the message "Please Correct Value Input"
+  Then I see the error message "Special characters are not allowed" to validate the entry  
  
 @PayBilling
-Scenario: Register a user on site        
+Scenario: Enter Your Customer ID with string
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | Hola Mundo    |
-  Then I see a "Characters are not allowed" control
+  Then I see the error message "Characters are not allowed" to validate the entry
   
 @PayBilling
-Scenario: Register a user on site        
+Scenario: Enter Your Customer ID
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
     |Enter Your Customer ID: 	      | 1234567     |
   And Press the "submit" button
-  Then I see a "Please Input Your Correct Customer ID" control
+  Then I see the error message "Please Input Your Correct Customer ID" to validate the entry

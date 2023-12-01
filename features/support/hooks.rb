@@ -7,7 +7,6 @@ end
 Before '@maximize' do
   page.driver.browser.manage.window.maximize
 end
-
 # Add these require statements at the beginning of your file
 require 'capybara'
 require 'capybara/cucumber'

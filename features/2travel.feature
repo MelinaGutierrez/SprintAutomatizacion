@@ -6,25 +6,65 @@ Feature: Mercury Tours Verify Registration
 Background:
   Given I am on the Mercury Tours homepage
 
+#@RegisterUser
 Scenario: Register a user on site        
-
 	Given I click the "Register" link
 	When I enter the required fields as show below
-	|First Name: 	    | Pepito             |
-    |Last Name: 	    | Perez              |
-    |Phone: 	        | 1234-567-12        |
-    |Email: 	        | pepe@pepazo.com    |
+	  |First Name: 	      | Pepito             |
+    |Last Name: 	      | Perez              |
+    |Phone: 	          | 1234-567-12        |
+    |Email: 	          | pepe@pepazo.com    |
     |Address:           | Av. America #123   |	
     |City: 	            | Cochabamba         |
     |State/Province:    | Cochabamba         | 	
     |Postal Code: 	    | 9897               |
     |Country: 	        | BOLIVIA            |
-    |User Name: 	    | Pepazo             |
+    |User Name: 	      | Pepazo             |
     |Password:          | ILoveQA            | 
     |Confirm Password:  | ILoveQA            |
 	And send my registration form
 	Then the confirmation screen is show
 	And my user name is "Pepazo"
+
+@RegisterUser
+Scenario: Register a user on site        
+	Given I click the "Register" link
+	When I enter the required fields as show below
+    | First Name:       | Gabriel            |
+    | Last Name:        | Lopez              |
+    | Phone:            | 234543             |
+    | Email:            | Gabriel@gmail.com  |
+    | Address:          | Av. Circunvalación |
+    | City:             | Cochabamba         |
+    | State/Province:   | Cochabamba         |
+    | Postal Code:      | 98971234           |
+    | Country:          | BOLIVIA            |
+    | User Name:        | User               |
+    | Password:         | Password           |
+    | Confirm Password: | Password           |
+	And send my registration form
+	Then the confirmation screen is show
+	And my user name is "User"
+
+#@RegisterUser
+Scenario: Register a user on site        
+	Given I click the "Register" link
+	When I enter the required fields as show below
+    | First Name:       |             |
+    | Last Name:        |             |
+    | Phone:            |             |
+    | Email:            |             |
+    | Address:          |             |
+    | City:             |             |
+    | State/Province:   |             |
+    | Postal Code:      |             |
+    | Country:          |             |
+    | User Name:        |             |
+    | Password:         |             |
+    | Confirm Password: |             |
+	And send my registration form
+	Then the confirmation screen is show
+	And my user name is ""
 
 
 Scenario: Find a flight with a register user    
@@ -38,57 +78,47 @@ Scenario: Register a user on site
 	When I press the Submit button
     Then the login successfully message is displayed
 
-
 @UnderConstructionPage
-Scenario: Validate that display Under Construction page    
-    Given I click the "CONTACT" link        
-    Then the under construction is displayed
+Scenario Outline: Validate that display Under Construction page when clicking on different links
+    Given I click the "<Link>" link        
+    Then show "UNDER CONSTRUCTION" image    
+    And show "Sorry for any inconvenience" message
 
-@UnderConstructionPage
-Scenario: Validate that display Under Construction page    
-    Given I click the "SUPPORT" link        
-    Then the under construction is displayed
-
-@UnderConstructionPage
-Scenario: Validate that display Under Construction page    
-    Given I click the "Destination" link        
-    Then the under construction is displayed
-
-@UnderConstructionPage
-Scenario: Validate that display Under Construction page    
-    Given I click the "Vacations" link        
-    Then the under construction is displayed
-
-@UnderConstructionPage
-Scenario: Validate that display Under Construction page    
-    Given I click the "Car Rentals" link        
-    Then the under construction is displayed
-
-@UnderConstructionPage
-Scenario: Validate that display Under Construction page    
-    Given I click the "Hotels" link        
-    Then the under construction is displayed
-
-@FlightsPage
-Scenario: Register a flight
-	Given I click the "Flights" link
-    And I click the continue button
-    Then the flight successfully message is displayed
+Examples:
+  | Link          |
+  | CONTACT       |
+  | SUPPORT       |
+  | Destination   |
+  | Vacations     |
+  | Car Rentals   |
+  | Hotels        |
 
 @FlightsPage
 Scenario: Register a flight 	
 	Given I click the "Flights" link
-    When I enter the required fields as show below2
-    |Type: 	            | One Way               |
-    |Passengers: 	    | 2                     |
-    |Departing From:    | Frankfurt             |
-    |On:                | June                  |
-    |Day1:              | 25                    |
-    |Arriving In:       | Paris                 |
-    |Returning:         | October               |
-    |Day2:              | 15                    |
-    |Service Class:     | Business class        |
-    |Airline:           | Blue Skies Airlines   |
-    And I click the continue button
-    Then the flight successfully message is displayed
+    When I enter the  Flight Details required fields as show below
+    | Type:           | Round Trip     |
+    | Passengers:     | 1              |
+    | Departing form: | Acapulco       |
+    | On:             | June 20        |
+    | Arriving In:    | Acapulco       |
+    | Returning:      | June 10        | 
+    | Service Class:  | Business class |
+    | Airline:        | No Preference  |
+    And I click the "Continue->"  button
+    Then show the confimation page
 
+@FlightsPage
+Scenario: Register a flight with a bad date
+	Given I click the "Flights" link
+    When I enter the  Flight Details required fields as show below
+    | Type:           | Round Trip     |
+    | Passengers:     | 1              |
+    | Departing form: | Acapulco       |
+    | On:             | February 31    |
+    | Arriving In:    | Acapulco       |
+    | Returning:      | June 10        | 
+    | Service Class:  | Business class |
+    | Airline:        | No Preference  |
+    And I click the "Continue->"  button
+    Then show the confimation page

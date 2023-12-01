@@ -1,7 +1,6 @@
 Given(/^I am on the Mercury Tours homepage$/) do
      page.driver.browser.manage.window.maximize
      visit('http://demo.guru99.com/test/newtours/')
-
 end
 
 Given(/^I click the "([^"]*)" link$/) do |linkText|
@@ -44,32 +43,37 @@ When(/^I enter the required fields as show below$/) do |table|
   end
 end
 
-When(/^I enter the required fields as show below2$/) do |table|
+When(/^I enter the  Flight Details required fields as show below$/) do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
-    case key
-    when "Type:"
-      find(:radio_button, option: value, name: 'tripType').click
-    when "Passengers:"
-      select(value, :from => 'passCount')
-    when "Departing From:"
-      select(value, :from => 'fromPort')
-    when "On:"
-      select(value, :from => 'fromMonth')
-    when "Day1:"
-      select(value, :from => 'fromDay')
-    when "Arriving In:"
-      select(value, :from => 'toPort')
-    when "Returning:"
-      select(value, :from => 'toMonth')
-    when "Day2:"
-      select(value, :from => 'toDay')
-    when "Service Class:"
-      select(value, :from => 'servClass')
-    when "Airline:"
-      select(value, :from => 'airline')
-    end
+  case key
+  when 'Type:'
+    radio_button = find('[value="oneway"]') if value.downcase == 'one way'
+    radio_button = find('[value="roundtrip"]') if value.downcase == 'round trip'
+    radio_button.choose
+  when 'Passengers:'
+    select value, from: 'passCount'
+  when 'Departing From:'
+    select value, from: 'fromPort'
+  when 'On:'
+    value_date = value.split
+    select value_date[0], from: 'fromMonth'
+    select value_date[1], from: 'fromDay'
+  when 'Arriving In:'
+    select value, from: 'toPort'
+  when 'Returning:'
+    value_date = value.split
+    select value_date[0], from: 'toMonth'
+    select value_date[1], from: 'toDay'
+  when 'Service Class:'
+    radio_button = find('[value="Coach"]') if value.downcase == 'economy class'
+    radio_button = find('[value="Business"]') if value.downcase == 'business class'
+    radio_button = find('[value="First"]') if value.downcase == 'first class'
+    radio_button.choose
+  when 'Airline:'
+    select value, from: 'airline'
   end
+  end 
 end
 
 When(/^send my registration form$/) do
@@ -112,6 +116,14 @@ When(/^I press the "([^"]*)" button$/) do |arg1|
   find(:xpath, xpath).click
 end
 
+When(/^I press the Submit button$/) do
+  xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/input'
+  find(:xpath, xpath).click
+end
+
+When(/^I click the "findFlights" image button$/) do
+  find('input[name="findFlights"]').click
+end
 
 Then(/^the login successfully message is displayed$/) do
     expect(page).to have_content("Login Successfully")
@@ -121,7 +133,19 @@ Then(/^the login successfully message is displayed$/) do
 end
 
 
-When(/^I press the Submit button$/) do
-  xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/input'
-  find(:xpath, xpath).click
+Then('show the confimation page') do
+  expect(page).to have_content("After flight finder - No Seats Avaialble")
+end
+
+Then('show {string} image') do |string|  
+  expect(page).to have_xpath('/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr[1]/td[2]/table/tbody/tr[1]/td/img')
+end
+
+Then('show {string} message') do |string|
+  expected_message = 'This section of our web site is currently under construction.'
+  selector = 'font[size="4"]'
+  expect(page).to have_selector(selector, text: expected_message)
+end
+When('I click the {string}  button') do |string|
+  find(:css, 'body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(5) > td > form > table > tbody > tr:nth-child(14) > td > input[type=image]').click
 end
