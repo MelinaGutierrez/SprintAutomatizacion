@@ -99,7 +99,7 @@ Scenario: Alert that can't use that type of values
   #And I should see an error alert with the message "Please Correct Value Input"
  
 @PayBilling
-Scenario: Register a user on site        
+Scenario:  Enter blank Customer ID
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
@@ -107,7 +107,7 @@ Scenario: Register a user on site
   Then I see the error message "Number must not be blank" to validate the entry  
  
 @PayBilling
-Scenario: Register a user on site        
+Scenario: Enter Your Customer ID with special characters
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
@@ -115,7 +115,7 @@ Scenario: Register a user on site
   Then I see the error message "Special characters are not allowed" to validate the entry  
  
 @PayBilling
-Scenario: Register a user on site        
+Scenario: Enter Your Customer ID with string
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
@@ -123,7 +123,7 @@ Scenario: Register a user on site
   Then I see the error message "Characters are not allowed" to validate the entry
   
 @PayBilling
-Scenario: Register a user on site        
+Scenario: Enter Your Customer ID
 	Given I click the "Pay Billing" link
   Then I see a "Pay Billing" tittle
   And I enter the required fields add plan customer as show below
