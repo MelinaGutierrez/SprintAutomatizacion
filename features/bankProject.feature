@@ -9,9 +9,6 @@ Feature: Bank Project Test
 		And I enter "pepito@gmail.com" into the Email ID field
 		And I click the "SUBMIT" button on Bank Project
 		Then I should visit the credentials page on BP
-		#Then I should see the login credentials table on the credentials page:
-		#	| UserID      | Password |
-		#	| mngr541222  | tUzYzar  |
 
 	Scenario: Log in with correct credentials
 		When I enter "@valid_user_id" into the UserID field on BP

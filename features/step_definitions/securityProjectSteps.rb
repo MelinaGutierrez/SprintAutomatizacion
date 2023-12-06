@@ -1,4 +1,4 @@
-#I am on the Security Project login page
+# I am on the Security Project login page
 Given(/^I am on the Security Project login page$/) do
   page.driver.browser.manage.window.maximize
   visit('https://demo.guru99.com/Security/SEC_V1/index.php')
@@ -22,6 +22,8 @@ end
 
 When('I select {string} from the Account No dropdown on Security Project') do |account_number|
   select(account_number, from: 'accountno')
+end
+
 When('I click the "Balance Enquiry" link on Security Project') do
   click_link('Balance Enquiry')
 end

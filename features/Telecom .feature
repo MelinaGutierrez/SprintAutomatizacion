@@ -9,7 +9,7 @@ Background:
 @AddCustumer
 Scenario: Show messages that can contain other type of data in email
 	Given I click the "Add Customer" link
-  And I enter the required telecom fields as show below
+  When I enter the required telecom fields as show below
     |Background Check:  |  done             |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
@@ -21,7 +21,7 @@ Scenario: Show messages that can contain other type of data in email
 @AddCustumer
 Scenario: Show messages that can contain other type of data in Address
 	Given I click the "Add Customer" link
-  And I enter the required telecom fields as show below
+  When I enter the required telecom fields as show below
     |Background Check:  |  pending          |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
@@ -33,7 +33,7 @@ Scenario: Show messages that can contain other type of data in Address
 @AddCustumer
 Scenario: Show messages that can contain other type of data in Address
 	Given I click the "Add Customer" link
-  And I enter the required telecom fields as show below
+  When I enter the required telecom fields as show below
     |Background Check:  |  pending          |
     |First Name: 	      |  Prueba           |
     |Last Name: 	      |  Prueba           |    
@@ -45,14 +45,14 @@ Scenario: Show messages that can contain other type of data in Address
 @AddCustumer
 Scenario: successfully add customer
 	Given I click the "Add Customer" link
-  And I enter the required telecom fields as show below
+  When I enter the required telecom fields as show below
     |Background Check:  |  done              |
     |First Name: 	      |  Juan              |
     |Last Name: 	      |  Perez             |    
     |Email: 	          |  juan@gmail.com    |
     |Address:           |  Av America        |	
     |Mobile Number:     |  1234566           |    
-  And Press the "submit" button   	
+  And I press the "submit" button   	
   Then I see a "Access Details to Guru99 Telecom" tittle
   And I see the error message "Please Note Down Your CustomerID" to validate the entry
 
@@ -87,16 +87,15 @@ Scenario: Correct input in the field
   Then I see a "Add Tariff Plan to Customer" tittle
   And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | 1234567     |
-  And Press the "submit" button
+  And I press the "submit" button
   Then I see the error message "Please Input Your Correct Customer ID" to validate the entry
 
 @TariffPlanCustomer
 Scenario: Alert that can't use that type of values
 	Given I click the "Add Tariff Plan to Customer" link
-  And I enter the required telecom fields as show below
+  When I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | -----    |
-  And Press the "submit" button
-  #And I should see an error alert with the message "Please Correct Value Input"
+  And I press the "submit" button  
  
 @PayBilling
 Scenario:  Enter blank Customer ID
@@ -128,5 +127,5 @@ Scenario: Enter Your Customer ID
   Then I see a "Pay Billing" tittle
   And I enter the required telecom fields as show below
     |Enter Your Customer ID: 	      | 1234567     |
-  And Press the "submit" button
+  And I press the "submit" button
   Then I see the error message "Please Input Your Correct Customer ID" to validate the entry
