@@ -1,7 +1,6 @@
-Feature: Guru99 Demo Page
-   As a BDD student
-   I want to test Guru99 registration page
-   so I learn how to use Capybara
+ Feature: Selenium 
+   To test the different tabs of the selenium section 
+   And check the functionalities
 
 @pushbottonInDemoPage
 Scenario: Demo flash movie play
