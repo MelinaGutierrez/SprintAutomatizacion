@@ -6,65 +6,31 @@ Feature: Mercury Tours Verify Registration
 Background:
   Given I am on the Mercury Tours homepage
 
-#@RegisterUser
-Scenario: Register a user on site        
-	Given I click the "Register" link
-	When I enter the required fields as show below
-	  |First Name: 	      | Pepito             |
-    |Last Name: 	      | Perez              |
-    |Phone: 	          | 1234-567-12        |
-    |Email: 	          | pepe@pepazo.com    |
-    |Address:           | Av. America #123   |	
-    |City: 	            | Cochabamba         |
-    |State/Province:    | Cochabamba         | 	
-    |Postal Code: 	    | 9897               |
-    |Country: 	        | BOLIVIA            |
-    |User Name: 	      | Pepazo             |
-    |Password:          | ILoveQA            | 
-    |Confirm Password:  | ILoveQA            |
-	And send my registration form
-	Then the confirmation screen is show
-	And my user name is "Pepazo"
-
 @RegisterUser
-Scenario: Register a user on site        
-	Given I click the "Register" link
-	When I enter the required fields as show below
-    | First Name:       | Gabriel            |
-    | Last Name:        | Lopez              |
-    | Phone:            | 234543             |
-    | Email:            | Gabriel@gmail.com  |
-    | Address:          | Av. Circunvalación |
-    | City:             | Cochabamba         |
-    | State/Province:   | Cochabamba         |
-    | Postal Code:      | 98971234           |
-    | Country:          | BOLIVIA            |
-    | User Name:        | User               |
-    | Password:         | Password           |
-    | Confirm Password: | Password           |
-	And send my registration form
-	Then the confirmation screen is show
-	And my user name is "User"
+Scenario Outline: Register a user on site
+    Given I click the "Register" link
+    When I enter the required fields as shown below
+      | First Name:       | <FirstName>       |
+      | Last Name:        | <LastName>        |
+      | Phone:            | <Phone>           |
+      | Email:            | <Email>           |
+      | Address:          | <Address>         |
+      | City:             | <City>            |
+      | State/Province:   | <StateProvince>   |
+      | Postal Code:      | <PostalCode>      |
+      | Country:          | <Country>         |
+      | User Name:        | <UserName>        |
+      | Password:         | <Password>        |
+      | Confirm Password: | <ConfirmPassword> |
+    And send my registration form
+    Then the confirmation screen is shown
+    And my user name is "<ExpectedUserName>"
 
-#@RegisterUser
-Scenario: Register a user on site        
-	Given I click the "Register" link
-	When I enter the required fields as show below
-    | First Name:       |             |
-    | Last Name:        |             |
-    | Phone:            |             |
-    | Email:            |             |
-    | Address:          |             |
-    | City:             |             |
-    | State/Province:   |             |
-    | Postal Code:      |             |
-    | Country:          |             |
-    | User Name:        |             |
-    | Password:         |             |
-    | Confirm Password: |             |
-	And send my registration form
-	Then the confirmation screen is show
-	And my user name is ""
+Examples:
+  | FirstName | LastName | Phone       | Email                | Address            | City        | StateProvince | PostalCode | Country  | UserName | Password | ConfirmPassword | ExpectedUserName |
+  | Pepito    | Perez    | 1234-567-12 | pepe@pepazo.com      | Av. America #123   | Cochabamba  | Cochabamba    | 9897       | BOLIVIA  | Pepazo   | ILoveQA  | ILoveQA         | Pepazo           |
+  | Gabriel   | Lopez    | 234543      | Gabriel@gmail.com    | Av. Circunvalación | Cochabamba  | Cochabamba    | 98971234   | BOLIVIA  | User     | Password | Password        | User             |
+  |           |          |             |                      |                    |             |               |            | BOLIVIA  |          |          |                 |                  |
 
 
 Scenario: Find a flight with a register user    
@@ -93,32 +59,24 @@ Examples:
   | Car Rentals   |
   | Hotels        |
 
-@FlightsPage
-Scenario: Register a flight 	
-	Given I click the "Flights" link
-    When I enter the  Flight Details required fields as show below
-    | Type:           | Round Trip     |
-    | Passengers:     | 1              |
-    | Departing form: | Acapulco       |
-    | On:             | June 20        |
-    | Arriving In:    | Acapulco       |
-    | Returning:      | June 10        | 
-    | Service Class:  | Business class |
-    | Airline:        | No Preference  |
+@flights
+Scenario Outline: Press All Buttons before finding flights on Flight Details Page
+    Given I click the "Flights" link
+    And I select "<passengers>" passengers
+    And I select "<departing_location>" as the departing location
+    And I select "<returning_location>" as the returning location
+    And I choose "<service_class>" as the service class
+    And I select "<airline_preference>" as the airline preference
     And I click the "Continue->"  button
     Then show the confimation page
 
-@FlightsPage
-Scenario: Register a flight with a bad date
-	Given I click the "Flights" link
-    When I enter the  Flight Details required fields as show below
-    | Type:           | Round Trip     |
-    | Passengers:     | 1              |
-    | Departing form: | Acapulco       |
-    | On:             | February 31    |
-    | Arriving In:    | Acapulco       |
-    | Returning:      | June 10        | 
-    | Service Class:  | Business class |
-    | Airline:        | No Preference  |
-    And I click the "Continue->"  button
-    Then show the confimation page
+Examples:
+  | passengers | departing_location | returning_location   | service_class    | airline_preference   |
+  | 3          | London             | New York             | Business class   | Unified Airlines     |
+  | 2          | Paris              | Seattle              | Economy class    | Pangea Airlines      |
+  | 4          | New York           | London               | First class      | Blue Skies Airlines  | 
+
+
+
+
+

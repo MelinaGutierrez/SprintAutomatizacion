@@ -7,7 +7,7 @@ Given(/^I click the "([^"]*)" link$/) do |linkText|
   click_link(linkText)
 end
 
-When(/^I enter the required fields as show below$/) do |table|
+When('I enter the required fields as shown below') do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
     case key
@@ -81,7 +81,7 @@ When(/^send my registration form$/) do
   find(:xpath, xpath_base).click
 end
 
-Then(/^the confirmation screen is show$/) do
+Then('the confirmation screen is shown') do
   greeting = "Dear"+" "+@name+" "+@lastName 	
   expect(page).to have_content(greeting)
   
@@ -132,20 +132,40 @@ Then(/^the login successfully message is displayed$/) do
     puts find(:xpath,'/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[1]/font/b').text
 end
 
+When('I click the {string}  button') do |string|
+  find(:css, 'body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(5) > td > form > table > tbody > tr:nth-child(14) > td > input[type=image]').click
+end
+
+flights_page = FlightsPage.new
+
+Given('I click the "Flights" link') do
+  flights_page.click_flights_link
+end
+
+And('I select "{int}" passengers') do |count|
+  flights_page.select_passengers(count)
+end
+
+Given('I select {string} as the departing location') do |string|
+  flights_page.select_departing_location(string)
+end
+
+Given('I select {string} as the returning location') do |string|
+  flights_page.select_returning_location(string)
+end
+
+Given('I choose {string} as the service class') do |string|
+  flights_page.choose_service_class(string)
+end
+
+Given('I select {string} as the airline preference') do |string|
+  flights_page.select_airline_preference(string)
+end
+
+And('I click the "Continue->" button') do
+  flights_page.click_continue_button
+end
 
 Then('show the confimation page') do
   expect(page).to have_content("After flight finder - No Seats Avaialble")
-end
-
-Then('show {string} image') do |string|  
-  expect(page).to have_xpath('/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr[1]/td[2]/table/tbody/tr[1]/td/img')
-end
-
-Then('show {string} message') do |string|
-  expected_message = 'This section of our web site is currently under construction.'
-  selector = 'font[size="4"]'
-  expect(page).to have_selector(selector, text: expected_message)
-end
-When('I click the {string}  button') do |string|
-  find(:css, 'body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(5) > td > form > table > tbody > tr:nth-child(14) > td > input[type=image]').click
 end
