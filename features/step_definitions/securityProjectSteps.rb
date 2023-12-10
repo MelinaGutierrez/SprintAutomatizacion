@@ -28,16 +28,15 @@ When('I click the "Balance Enquiry" link on Security Project') do
   click_link('Balance Enquiry')
 end
 
-When('I select {string} from the Account No dropdown on Security Project') do |account_no|
-  select(account_no, from: 'accountno')
-end
-
 When('I click the "Submit" button on Security Project') do
   click_button('AccSubmit')
 end
 
 When('I click the "Mini Statement" link on Security Project') do
   click_link('Mini Statement')
+end
+Then('I click the "Submit" button for Contact Us on Security Project') do
+  click_button('sub')
 end
 
 When('I select {string} from the Account No dropdown for Mini Statement on Security Project') do |account_no|
@@ -64,9 +63,9 @@ When('I fill in the Contact Us form on Security Project') do
   fill_in('addr', with: 'hola')
 end
 
-Then('I click the "Submit" button for Contact Us on Security Project') do
-  click_button('sub')
-end
+# Then('I click the "Submit" button for Contact Us on Security Project') do
+#   click_button('sub')
+# end
 
 When('I click the "Log out" link on Security Project') do
   click_link('Log out')
@@ -81,18 +80,28 @@ Then('I should see a logout success alert on Security Project') do
   expect(url_after_logout).to eq('https://demo.guru99.com/Security/SEC_V1/index.php')
 end
 
+security_project_page = SecurityProjectPage.new
+
 When('I click the "Balance Enquiry" link on Security Project$') do
-  click_link('Balance Enquiry')
+  security_project_page.click_balance_enquiry_link
 end
 
-When('I select {string} from the Account No dropdown on Security Project') do |account_no|
-  select(account_no, from: 'accountno')
+And('I select "{string}" from the Account No dropdown on Security Project') do |account_number|
+  security_project_page.select_account_number(account_number)
+end
+
+And('I click the "Submit" button on Security Project') do
+  security_project_page.click_submit_button
+end
+
+Then('I should be on the Balance Enquiry page') do
+  expect(security_project_page.on_balance_enquiry_page?).to be true
 end
 
 When('I click the "Reset" button on Security Project') do
-  click_button('res')
+  security_project_page.click_reset_button
 end
 
 Then('the Account No dropdown should be reset on Security Project') do
-  expect(page).to have_select('accountno', selected: 'Select Account')
+  expect(security_project_page.account_number_dropdown_value).to be_empty
 end
