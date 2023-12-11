@@ -82,47 +82,20 @@ Scenario: Outside click
     When I click the link to outside
     Then I should be redirected to the Facebook homepage
 
-@pressclickonyahoo
-Scenario: Clicking on a Yahoo! pager1
+@pressclickonyahoo,SmokeTest
+  Scenario Outline: Clicking on a Yahoo! pager
     Given I am on the Yahoo! test page
-    When I click the link with id "#pager1"
-    Then the carousel content should be displayed with specifications
-
-@pressclickonyahoo
-Scenario: Clicking on a Yahoo!pager2 
-    Given I am on the Yahoo! test page
-    When I click the link with id "#pager2"
-    Then the carousel content for pager2 should be displayed with specifications
-
-@pressclickonyahoo
-Scenario:  Clicking on a Yahoo!pager3
-    Given I am on the Yahoo! test page
-    When I click the link with id "#pager3"
-    Then the carousel content for pager3 should be displayed with specifications
-
-@pressclickonyahoo
-Scenario:  Clicking on a Yahoo!pager4
-    Given I am on the Yahoo! test page
-    When I click the link with id "#pager4"
-    Then the carousel content for pager4 should be displayed with specifications
-
-@pressclickonyahoo
-Scenario:  Clicking on a Yahoo!pager5
-    Given I am on the Yahoo! test page
-    When I click the link with id "#pager5"
-    Then the carousel content for pager5 should be displayed with specifications
-
-@pressclickonyahoo
-Scenario:  Clicking on a Yahoo!pager6
-    Given I am on the Yahoo! test page
-    When I click the link with id "#pager6"
-    Then the carousel content for pager6 should be displayed with specifications
-
-@pressclickonyahoo
-Scenario:  Clicking on a Yahoo!pager7
-    Given I am on the Yahoo! test page
-    When I click the link with id "#pager7"
-    Then the carousel content for pager7 should be displayed with specifications
+    When I click the link with id "#pager<index>"
+    Then the carousel content for pager<index> should be displayed with specifications
+    Examples:
+      | index |
+      | 1     |
+      | 2     |
+      | 3     |
+      | 4     |
+      | 5     |
+      | 6     |
+      | 7     |
 
 @clickinbottonfordownload
 Scenario: Download Yahoo! Messenger from the provided link

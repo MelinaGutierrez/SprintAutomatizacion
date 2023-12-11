@@ -33,19 +33,10 @@ end
 end
 
 
-When(/^I press the "([^"]*)" button$/) do |arg1|
-xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[4]/td[2]/div/input'
-find(:xpath, xpath).click
-end
-
 Then('I see the error message {string} to validate the entry') do |string|  
 expect(page).to have_content(string)
 end
 
-When(/^I press the Submit button$/) do
-xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/input'
-find(:xpath, xpath).click
-end
 
 Then('I see a {string} tittle') do |string|
   expect(page).to have_content(string)

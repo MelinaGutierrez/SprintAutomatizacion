@@ -38,8 +38,6 @@ class FlightsPage
   
     def click_continue_button
       click_button 'Continue->'
-    end
-  
-    # Agrega más métodos según sea necesario para interactuar con la página de vuelos
+    end      
   end
   

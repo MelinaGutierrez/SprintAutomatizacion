@@ -55,16 +55,8 @@ Scenario: successfully add customer
   And I press the "submit" button   	
   Then I see a "Access Details to Guru99 Telecom" tittle
   And I see the error message "Please Note Down Your CustomerID" to validate the entry
-
-@TariffPlanCustomer 
-Scenario: Message that field can't be empty
-	Given I click the "Add Tariff Plan to Customer" link
-  Then I see a "Add Tariff Plan to Customer" tittle
-  And I enter the required telecom fields as show below
-    |Enter Your Customer ID: 	      |               |
-  Then I see the error message "Number must not be blank" to validate the entry  
- 
-@TariffPlanCustomer
+  
+  @TariffPlanCustomer
 Scenario: Message that field can't be special characters
 	Given I click the "Add Tariff Plan to Customer" link
   Then I see a "Add Tariff Plan to Customer" tittle
@@ -72,14 +64,19 @@ Scenario: Message that field can't be special characters
     |Enter Your Customer ID: 	      | !@#$%^&       |
   Then I see the error message "Special characters are not allowed" to validate the entry  
  
-@TariffPlanCustomer
-Scenario: Message that field can't be string
-	Given I click the "Add Tariff Plan to Customer" link
-  Then I see a "Add Tariff Plan to Customer" tittle
-  And I enter the required telecom fields as show below
-    |Enter Your Customer ID: 	      | Hola Mundo    |
-  Then I see the error message "Characters are not allowed" to validate the entry
-  
+  @TariffPlanCustomer
+  Scenario Outline: Validate Customer ID Field
+    Given I click the "Add Tariff Plan to Customer" link
+    Then I see a "Add Tariff Plan to Customer" title
+    And I wait for 2 seconds
+    And I enter the required telecom fields as shown below
+      | Enter Your Customer ID:    | <customer_id> |
+    Examples:
+      | customer_id  | error_message                         |
+      | ""            | "Number must not be blank"            |
+      | !@#$%^&       | "Special characters are not allowed"  |
+      | Hola Mundo    | "Characters are not allowed"          |
+      | 1234567       | "Please Input Your Correct Customer ID" |
 
 @TariffPlanCustomer
 Scenario: Correct input in the field
