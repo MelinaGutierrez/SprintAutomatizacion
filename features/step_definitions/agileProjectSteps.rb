@@ -57,9 +57,9 @@ When('I enter {string} into the UserID field on BP') do |userid|
   fill_in('uid', with: userid)
 end
 
-When('I enter {string} into the Password field on BP') do |password|
-  fill_in('password', with: password)
-end
+# When('I enter {string} into the Password field on BP') do |password|
+#   fill_in('password', with: password)
+# end
 
 When('I click the LOGIN button') do
   sleep(2)

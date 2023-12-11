@@ -18,16 +18,15 @@ Feature: Bank Project Test
 			| UserID      | Password |
 			| mngr541222  | tUzYzar  |
 
-	Scenario: Log in with incorrect Password
-		Given I am on the Bank Project login page
-		When I enter "@valid_user_id" into the UserID field on BP
-		And I enter "@incorrect_password" into the Password field on BP
-		And I click the LOGIN button
-		Then I should see an error alert with the message "User is not valid"
+@LoginError
+Scenario Outline: Log in with incorrect credentials
+    Given I am on the Bank Project login page
+    When I enter "<UserID>" into the UserID field on BP
+    And I enter "<Password>" into the Password field on BP
+    And I click the LOGIN button
+    Then I should see an error alert with the message "User is not valid"
 
-	Scenario: Log in with incorrect UserID
-		Given I am on the Bank Project login page
-		When I enter "@incorrect_user_id" into the UserID field on BP
-		And I enter "@valid_password" into the Password field on BP
-		And I click the LOGIN button
-		Then I should see an error alert with the message "User is not valid"
+Examples:
+  | UserID            | Password           |
+  | @valid_user_id    | @incorrect_password|
+  | @incorrect_user_id| @valid_password    |

@@ -12,14 +12,12 @@ Feature: Security Project Verify Credentials
   Scenario: Register on Security Project page with UserId and Password
     Then I should be on the customer home page with Balance
 
-@prueba
   Scenario: Check Balance Enquiry
     When I click the "Balance Enquiry" link on Security Project$
     And I select "3308" from the Account No dropdown on Security Project
     And I click the "Submit" button on Security Project
     Then I should be on the Balance Enquiry page
 
-@prueba
   Scenario: Check Reset button
     When I click the "Balance Enquiry" link on Security Project$
     And I select "3308" from the Account No dropdown on Security Project
