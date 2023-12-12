@@ -76,10 +76,6 @@ Then('I should see the logout success message') do
   page.driver.browser.switch_to.alert.accept
 end
 
-When('I select {string} from the Account No dropdown') do |string|
-  # Write code here that turns the phrase above into concrete actions
-end
-
 When('I should be back on the login page') do
   expected_url = 'https://demo.guru99.com/Agile_Project/Agi_V1/index.php'
   expect(page).to have_current_path(expected_url)

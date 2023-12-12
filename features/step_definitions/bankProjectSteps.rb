@@ -17,7 +17,7 @@ When('I click the "SUBMIT" button on Bank Project') do
 end
 
 When('I enter {string} into the Password field on BP') do |password|
-  fill_in 'password', with: password # Ajusta el selector según la estructura de tu formulario
+  fill_in 'password', with: password 
 end
 
 When('I should be on the redirected page') do

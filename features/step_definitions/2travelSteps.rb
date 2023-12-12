@@ -1,10 +1,7 @@
+
 Given(/^I am on the Mercury Tours homepage$/) do
      page.driver.browser.manage.window.maximize
      visit('http://demo.guru99.com/test/newtours/')
-end
-
-Given(/^I click the "([^"]*)" link$/) do |linkText|
-  click_link(linkText)
 end
 
 When('I enter the required fields as shown below') do |table|
@@ -43,7 +40,7 @@ When('I enter the required fields as shown below') do |table|
   end
 end
 
-When(/^I enter the  Flight Details required fields as show below$/) do |table|
+When('I enter the Flight Details required fields as shown below') do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
   case key
@@ -111,7 +108,7 @@ Given(/^I enter my user and password$/) do
   fill_in 'password', :with => ENV['PSW']
 end
 
-When(/^I press the "([^"]*)" button$/) do |arg1|
+When(/^I press the "([^"]*)" button on page$/) do |arg1|
   xpath = '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[4]/td[2]/div/input'
   find(:xpath, xpath).click
 end
@@ -132,40 +129,12 @@ Then(/^the login successfully message is displayed$/) do
     puts find(:xpath,'/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[1]/font/b').text
 end
 
-When('I click the {string}  button') do |string|
-  find(:css, 'body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(5) > td > form > table > tbody > tr:nth-child(14) > td > input[type=image]').click
-end
-
 flights_page = FlightsPage.new
 
-Given('I click the "Flights" link') do
-  flights_page.click_flights_link
+Given('I click the {string} link') do |string|
+  flights_page.click_flights_link(string)
 end
 
-And('I select "{int}" passengers') do |count|
-  flights_page.select_passengers(count)
-end
-
-Given('I select {string} as the departing location') do |string|
-  flights_page.select_departing_location(string)
-end
-
-Given('I select {string} as the returning location') do |string|
-  flights_page.select_returning_location(string)
-end
-
-Given('I choose {string} as the service class') do |string|
-  flights_page.choose_service_class(string)
-end
-
-Given('I select {string} as the airline preference') do |string|
-  flights_page.select_airline_preference(string)
-end
-
-And('I click the "Continue->" button') do
-  flights_page.click_continue_button
-end
-
-Then('show the confimation page') do
+Then('show the confirmation page') do
   expect(page).to have_content("After flight finder - No Seats Avaialble")
 end

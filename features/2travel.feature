@@ -6,7 +6,7 @@ Feature: Mercury Tours Verify Registration
   Background: 
     Given I am on the Mercury Tours homepage
 
-  @RegisterUser,SmokeTest
+  @RegisterUser,@SmokeTest
   Scenario Outline: Register a user on site
     Given I click the "Register" link
     When I enter the required fields as shown below
@@ -34,7 +34,7 @@ Feature: Mercury Tours Verify Registration
 
   Scenario: Find a flight with a register user
     Given I enter my user and password
-    When I press the "Sign-In" button
+    When I press the "SIGN-IN" button on page
     Then the login successfully message is displayed
 
   Scenario: Register a user on site
@@ -58,19 +58,38 @@ Feature: Mercury Tours Verify Registration
       | Car Rentals |
       | Hotels      |
 
-  @flights,SmokeTest
-  Scenario Outline: Press All Buttons before finding flights on Flight Details Page
-    Given I click the "Flights" link
-    And I select "<passengers>" passengers
-    And I select "<departing_location>" as the departing location
-    And I select "<returning_location>" as the returning location
-    And I choose "<service_class>" as the service class
-    And I select "<airline_preference>" as the airline preference
-    And I click the "Continue->"  button
-    Then show the confimation page
 
-    Examples: 
-      | passengers | departing_location | returning_location | service_class  | airline_preference  |
-      |          3 | London             | New York           | Business class | Unified Airlines    |
-      |          2 | Paris              | Seattle            | Economy class  | Pangea Airlines     |
-      |          4 | New York           | London             | First class    | Blue Skies Airlines |
+@FlightsPage,@SmokeTest
+Scenario: Register a flight with a bad date
+	Given I click the "Flights" link
+    When I enter the Flight Details required fields as shown below
+    | Type:           | Round Trip     |
+    | Passengers:     | 1              |
+    | Departing form: | Acapulco       |
+    | On:             | February 31    |
+    | Arriving In:    | Acapulco       |
+    | Returning:      | June 10        | 
+    | Service Class:  | Business class |
+    | Airline:        | No Preference  |
+    And I click the "findFlights" button
+    Then show the confirmation page
+
+@FlightsPage
+Scenario Outline: Register a flight
+    Given I click the "Flights" link
+    When I enter the Flight Details required fields as shown below
+      | Type:            | <TripType>         |
+      | Passengers:      | <NumPassengers>    |
+      | Departing From:  | <DepartureCity>    |
+      | On:              | <DepartureDate>    |
+      | Arriving In:     | <ArrivalCity>      |
+      | Returning:       | <ReturnDate>       |
+      | Service Class:   | <ServiceClass>     |
+      | Airline:         | <PreferredAirline> |
+    And I click the "findFlights" button
+    Then show the confirmation page
+
+Examples:
+  | TripType     | NumPassengers | DepartureCity      | DepartureDate | ArrivalCity      | ReturnDate | ServiceClass   | PreferredAirline   |
+  | Round Trip   | 1             | Acapulco           | February 31   | Acapulco         | June 10    | Business class | No Preference      |
+  | One Way      | 2             | Frankfurt          | June 25       | Paris            | October 15 | Business class | Blue Skies Airlines |

@@ -39,10 +39,6 @@ Then('I click the "Submit" button for Contact Us on Security Project') do
   click_button('sub')
 end
 
-When('I select {string} from the Account No dropdown for Mini Statement on Security Project') do |account_no|
-  select(account_no, from: 'accountno')
-end
-
 When('I click the "Submit" button for Mini Statement on Security Project') do
   click_button('AccSubmit')
 end
@@ -90,8 +86,8 @@ And('I select "{string}" from the Account No dropdown on Security Project') do |
   security_project_page.select_account_number(account_number)
 end
 
-And('I click the "Submit" button on Security Project') do
-  security_project_page.click_submit_button
+When('I select {string} from the Account No dropdown for Mini Statement on Security Project') do |account_no|
+  select(account_no, from: 'accountno')
 end
 
 Then('I should be on the Balance Enquiry page') do
