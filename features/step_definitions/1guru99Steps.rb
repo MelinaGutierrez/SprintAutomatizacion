@@ -121,7 +121,7 @@ When(/^I click id "([^"]*)"$/) do |link_id|
   find("##{link_id}").click
 end
 
-When(/^I enter "(.?)" into the "(.?)" field$/) do |value, field|
+When(/^I enter "(.*?)" into the "(.*?)" field$/) do |value, field|
   fill_in field, with: value
 end
 
@@ -218,7 +218,7 @@ Then(/^the carousel content for pager7 should be displayed with specifications$/
   expect(page).to have_css('ol.carousel-content[style="' + expected_styles + '"]')
 end
 
-Then(/^the link with id "([^"])" should open the download link "([^"])"$/) do |link_id, download_link|
+Then(/^the link with id "([^"]*)" should open the download link "([^"]*)"$/) do |link_id, download_link|
   link = find("##{link_id}")
   link.click
  expect(File.exist?(download_link)).to be true
@@ -232,4 +232,8 @@ end
 Then(/^I should be redirected to "(.*?)"$/) do |expected_url|
   puts "Actual URL: #{current_url}"
   expect(page).to have_current_path(expected_url)
+end
+
+Then(/^I should be redirected to "([^"]*)"$/) do |expected_url|
+  expect(current_url).to eq(expected_url)
 end

@@ -1,4 +1,4 @@
-Feature: Selenium 
+ Feature: Selenium 
    To test the different tabs of the selenium section 
    And check the functionalities
 
