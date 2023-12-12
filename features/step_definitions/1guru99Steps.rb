@@ -1,4 +1,3 @@
-
 Given(/^I am on the sample homepage$/) do
   visit 'http://demo.guru99.com/'
 end
@@ -150,7 +149,7 @@ When(/^I click the RSS icon$/) do
   find('.fa-rss').click
 end
 
-When(/^I enter "([^"]*)" into the "([^"]*)" field for Facebook$/) do |value, field|
+When(/^I enter "([^"])" into the "([^"])" field for Facebook$/) do |value, field|
   fill_in field, with: value
 end
 

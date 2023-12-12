@@ -3,7 +3,7 @@ Feature: Security Project Verify Credentials
   As a registered customer
   I want to test the customization options
 
-  Background:
+  Background: 
     Given I am on the Security Project login page
     When I enter "1303" into the UserId field on Security Project
     And I enter "Guru99" into the Password field on Security Project
@@ -12,20 +12,20 @@ Feature: Security Project Verify Credentials
   Scenario: Register on Security Project page with UserId and Password
     Then I should be on the customer home page with Balance
 
-@prueba
+  @SmokeTest
   Scenario: Check Balance Enquiry
     When I click the "Balance Enquiry" link on Security Project$
     And I select "3308" from the Account No dropdown on Security Project
     And I click the "Submit" button on Security Project
     Then I should be on the Balance Enquiry page
 
-@prueba
   Scenario: Check Reset button
     When I click the "Balance Enquiry" link on Security Project$
     And I select "3308" from the Account No dropdown on Security Project
     And I click the "Reset" button on Security Project
     Then the Account No dropdown should be reset on Security Project
 
+  @SmokeTest
   Scenario: Check Mini Statement
     When I click the "Mini Statement" link on Security Project
     And I select "3309" from the Account No dropdown for Mini Statement on Security Project
@@ -40,5 +40,3 @@ Feature: Security Project Verify Credentials
   Scenario: Check Log out
     When I click the "Log out" link on Security Project
     Then I should see a logout success alert on Security Project
-
-

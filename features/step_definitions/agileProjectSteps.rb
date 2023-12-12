@@ -57,9 +57,9 @@ When('I enter {string} into the UserID field on BP') do |userid|
   fill_in('uid', with: userid)
 end
 
-When('I enter {string} into the Password field on BP') do |password|
-  fill_in('password', with: password)
-end
+# When('I enter {string} into the Password field on BP') do |password|
+#   fill_in('password', with: password)
+# end
 
 When('I click the LOGIN button') do
   sleep(2)
@@ -74,10 +74,6 @@ end
 Then('I should see the logout success message') do
   page.driver.browser.switch_to.alert
   page.driver.browser.switch_to.alert.accept
-end
-
-When('I select {string} from the Account No dropdown') do |string|
-  # Write code here that turns the phrase above into concrete actions
 end
 
 When('I should be back on the login page') do

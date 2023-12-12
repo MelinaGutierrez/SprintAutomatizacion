@@ -23,9 +23,7 @@ class SecurityProjectPage
       find('#accountno').value
     end
   
-    def on_balance_enquiry_page?
-      # Agrega lógica para verificar si estás en la página de Balance Enquiry
-      # Puedes verificar por algún elemento característico de esa página
+    def on_balance_enquiry_page?      
       has_content?('Balance Enquiry Confirmation')
     end
   end

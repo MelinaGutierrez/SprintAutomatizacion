@@ -17,16 +17,16 @@ When('I click the "SUBMIT" button on Bank Project') do
 end
 
 When('I enter {string} into the Password field on BP') do |password|
-  fill_in 'password', with: password # Ajusta el selector según la estructura de tu formulario
+  fill_in 'password', with: password 
 end
 
 When('I should be on the redirected page') do
   expect(page).to have_current_path(@credentials_url, wait: 10)
 end
 
-When('I click the LOGIN button') do
-  click_button('LOGIN') # Ajusta el selector según la estructura de tu formulario
-end
+# When('I click the LOGIN button') do
+#   click_button('LOGIN') # Ajusta el selector según la estructura de tu formulario
+# end
 
 Then('I should see the login credentials table on the credentials page:') do |table|
   # table is a Cucumber::MultilineArgument::DataTable
